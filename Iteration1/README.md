@@ -18,8 +18,8 @@ Only three `.py` files are codes. They are:
 To run this analyzer, You have three optional commands:
 
 + python plyYacc.py
-+ python plyYacc.py <imported Markdown filename>
-+ python plyYacc.py <imported Markdown filename> <Exported HTML filename>
++ python plyYacc.py *imported Markdown filename*
++ python plyYacc.py *imported Markdown filename* *Exported HTML filename*
 
 But first you need to set up python environment (only for windows users) and ply (lexer and yacc for python).
 At the root of this repository exists a file named `ply-3.4.tar.gz`. Unzip it and run this code:

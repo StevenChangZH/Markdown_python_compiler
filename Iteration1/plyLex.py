@@ -68,18 +68,18 @@ def t_error(t):
 lexer = lex.lex()
 
 
-# Test lex
-file_object = open('./data.md')
-try:
-    data = file_object.read()
-finally:
-    file_object.close()
-# Give the lexer some input
-lexer.input(data)
-
-
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok: break      # No more input
-    print tok
+## Test lex
+#file_object = open('./data.md')
+#try:
+#    data = file_object.read()
+#finally:
+#    file_object.close()
+## Give the lexer some input
+#lexer.input(data)
+#
+#
+## Tokenize
+#while True:
+#    tok = lexer.token()
+#    if not tok: break      # No more input
+#    print tok
