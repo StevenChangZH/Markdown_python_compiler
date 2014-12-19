@@ -10,7 +10,7 @@ Now we have Iteration1, and you can check it in the Iteration1 folder.
 ##Functions
 + Using `#` to create title and subtitles, e.g. `# TITLE` `## SUBTITLE`
 + Using one `*` or one `_` to set to latics, e.g. `*latics*` `_latics_`
-+ Using `**` or `__` to set to bold, e.g.`**bold**` `__bold__
++ Using `**` or `__` to set to bold, e.g.`**bold**` `__bold__`
 + Using more than three `*`, `=` or `-` to add a separation line, e.g.`---` `===` `***`
   (you can be insert a space, and please notice that `===` is only supported by GitHub.)
 
@@ -25,7 +25,6 @@ python setup.py install
 then you can test it.
 
 ##How to use
-Only three `.py` files are codes. They are:
 
 + `plyLex.py` lexer
 + `plyExport.py` two string for html output
