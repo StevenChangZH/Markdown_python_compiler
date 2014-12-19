@@ -1,0 +1,19 @@
+    'all : empty'
+    'all : all title'
+    'all : all seperator'
+    'all : all paragraph'
+    'all : all newline'
+
+    'seperator : SEPERATOR'
+
+    'newline : NEWLINE'
+
+    'title : POUNDSIGN CONTENTS'
+
+    'paragraph : texts'
+    'paragraph : paragraph texts'
+
+    'texts : LATICS texts LATICS'
+    'texts : BOLD texts BOLD'
+    'texts : CONTENTS'
+    'empty : '
