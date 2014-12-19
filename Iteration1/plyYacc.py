@@ -15,7 +15,7 @@ from plyExport import html_tails
 # python plyYacc.py <imported Markdown filename> <Exported HTML filename>
 commandlength = len(sys.argv)
 if commandlength==1:
-    Markdown_filename = "test01.md"
+    Markdown_filename = "data.md"
     HTML_filename = "html_md.html"
 elif commandlength==2:
     Markdown_filename = sys.argv[1]
@@ -37,8 +37,8 @@ def p_all_title(p):
     'all : all title'
     p[0] = p[1] + p[2] + "\n"
 
-def p_all_seperator(p):
-    'all : all seperator'
+def p_all_separator(p):
+    'all : all separator'
     p[0] = p[1] + p[2] + "\n"
 
 def p_all_paragraph(p):
@@ -51,8 +51,8 @@ def p_all_newline(p):
 
 
 
-def p_sep_seperator(p):
-    'seperator : SEPERATOR'
+def p_sep_separator(p):
+    'separator : SEPARATOR'
     p[0] = "<hr />"
 
 def p_sep_newline(p):

@@ -10,7 +10,7 @@ import ply.lex as lex
 # List of token names
 tokens = (
     'POUNDSIGN',
-    'SEPERATOR',
+    'SEPARATOR',
     'LATICS',
     'BOLD',
     'NEWLINE',
@@ -20,7 +20,7 @@ tokens = (
 # Regular expression rules for simple tokens
 # Chinese coding if possible: \u4e00-\u9fa5 ( '_' has an error)
 # NOTICE the priority of each token
-def t_SEPERATOR(t):
+def t_SEPARATOR(t):
     r'[*\-=]([ ]{0,1}[*\-=]){2,}'
     return t
 
