@@ -3,22 +3,27 @@ Markdown_python_compiler
 
 This is a Markdown compiler, converting Markdown to HTML with python. We've used ply and MathJax.
 
-Every Iteration will add some functions. So please add an iteration directly and debug in that folder only.
+Some .js scripts used from Markdown interpreter of R studio.
 
-Now we have Iteration1, and you can check it in the Iteration1 folder.
+Current version is 3.0
+
+Now I have realized some functions, check it below.
 
 ##Functions
+Supported Markdown grammars:
 + Using `#` to create title and subtitles, e.g. `# TITLE` `## SUBTITLE`
 + Using one `*` or one `_` to set to latics, e.g. `*latics*` `_latics_`
 + Using `**` or `__` to set to bold, e.g.`**bold**` `__bold__`
 + Using more than three `*`, `=` or `-` to add a separation line, e.g.`---` `===` `***`
   (you can be insert a space, and please notice that `===` is only supported by GitHub.)
++ Using `1. `, `+ `, `- ` or `* ` for listing.
 
 
 
 ##Environment
 If you want to test it, first you need to set up python environment (only for windows users) and ply (lexer and yacc for python).
-At the root of this repository exists a file named `ply-3.4.tar.gz`. Unzip it and run this code:
+At the root of this repository exists a file named `ply-3.4.zip`. Unzip it and run this code on your terminal:
+
 ```
 python setup.py install
 ```
@@ -28,10 +33,14 @@ then you can test it.
 
 + `plyLex.py` lexer
 + `plyExport.py` two string for html output
-+ `plyYacc.py`semantic analyzer and script interface
++ `plyYacc.py`semantic analyzer
++ `plyRun.py` script interface
 
 To run this analyzer, You have three optional commands:
+```
++ python plyRun.py
++ python plyRun.py *imported Markdown filename*
++ python plyRun.py *imported Markdown filename* *Exported HTML filename*
+```
 
-+ python plyYacc.py
-+ python plyYacc.py *imported Markdown filename*
-+ python plyYacc.py *imported Markdown filename* *Exported HTML filename*
+You can use `data.md` as a test.

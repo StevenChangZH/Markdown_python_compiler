@@ -3,15 +3,16 @@
 # plyLex.py
 #
 # tokenizer for Markdown elements
-# version 1.0 for test-1
+# version 3.0 for test-1
 # ------------------------------------------------------------
 import ply.lex as lex
 
 # List of token names
 tokens = (
     'SEPARATOR',
-#    'LISTSINGLE',
-#    'LISTDOUBLE',
+    'LISTNUMBER',
+    'LISTSINGLE',
+    'LISTDOUBLE',
           
     'NEWLINE',
     'TAB',
@@ -33,21 +34,29 @@ tokens = (
 
 # Regular expression rules for simple tokens
 # Chinese coding if possible: \u4e00-\u9fa5 ( '_' has an error)
+# NOTICE the return values of each token
 # NOTICE the priority of each token
 def t_SEPARATOR(t):
-    r'[*\-=]([ ]{0,1}[*\-=]){2,}'
+    r'[\n\r]{1}[*\-=]([ ]{0,1}[*\-=]){2,}'
     return t
 
-#def t_LISTSINGLE(t):
-#    r'[\n\r]{1}[*+]{1}[ ]{1}'
-#    return t
-#
-#def t_LISTDOUBLE(t):
-#    r'[\n\r]{1}[*+]{2}[ ]{1}'
-#    return t
+def t_LISTNUMBER(t):
+    r'[\n\r]{1}[ ]*[0-9]+[.]{1}[ ]{1}'
+    t.value = (t.value)[1:-2]
+    return t
+
+def t_LISTSINGLE(t):
+    r'[\n\r]{1}[ ]*[\*\-\+]{1}[ ]{1}'
+    t.value = (t.value)[1:-1]
+    return t
+
+def t_LISTDOUBLE(t):
+    r'[\n\r]{1}[ ]*[\*\-\+]{2}[ ]{1}'
+    t.value = (t.value)[1:-2]
+    return t
 
 def t_NEWLINE(t):
-    r'[\r\n]+'
+    r'[\r\n]'
     t.value = len(t.value)
     return t
 
@@ -97,7 +106,7 @@ def t_RPAREN(t):
     return t
 
 def t_CONTENTS(t):
-    r'([0-9a-zA-Z]|[., :\/\'\?])+'
+    r'([0-9a-zA-Z]|[., :\/\'\?!])+'
     return t
 
 ## Ignored only \n not \n\n
@@ -122,18 +131,18 @@ def t_error(t):
 lexer = lex.lex()
 
 
-## Test lex
-#file_object = open('./data.md')
-#try:
-#    data = file_object.read()
-#finally:
-#    file_object.close()
-## Give the lexer some input
-#lexer.input(data)
-#
-#
-## Tokenize
-#while True:
-#    tok = lexer.token()
-#    if not tok: break      # No more input
-#    print tok
+# Test lex
+file_object = open('./data.md')
+try:
+    data = file_object.read()
+finally:
+    file_object.close()
+# Give the lexer some input
+lexer.input(data)
+
+
+# Tokenize
+while True:
+    tok = lexer.token()
+    if not tok: break      # No more input
+    print tok
