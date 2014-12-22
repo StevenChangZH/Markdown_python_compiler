@@ -5,7 +5,7 @@ This is a Markdown compiler, converting Markdown to HTML with python. We've used
 
 Some .js scripts used from Markdown interpreter of R studio.
 
-Current version is 3.0
+Current version is 5.0
 
 Now I have realized some functions, check it below.
 
@@ -17,6 +17,9 @@ Supported Markdown grammars:
 + Using more than three `*`, `=` or `-` to add a separation line, e.g.`---` `===` `***`
   (you can be insert a space, and please notice that `===` is only supported by GitHub.)
 + Using `1. `, `+ `, `- ` or `* ` for listing.
++ Using `![img](url)` to show image
++ Using `> contents` to support quote.
++ Using ``` to support code fields.
 
 
 
