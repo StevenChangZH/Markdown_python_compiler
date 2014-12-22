@@ -3,7 +3,7 @@
 # plyLex.py
 #
 # tokenizer for Markdown elements
-# version 3.0 for test-1
+# version 5.0 for test-1
 # ------------------------------------------------------------
 import ply.lex as lex
 
@@ -14,10 +14,12 @@ tokens = (
     'LISTSINGLE',
     'LISTDOUBLE',
           
-    'NEWLINE',
     'TAB',
           
     'POUNDSIGN',
+    'EXCLAMATION',
+    'CODEFIELD',
+    'NEWLINE',
     'CODE',
     'BOLD',
     'LATICS',
@@ -37,27 +39,22 @@ tokens = (
 # NOTICE the return values of each token
 # NOTICE the priority of each token
 def t_SEPARATOR(t):
-    r'[\n\r]{1}[*\-=]([ ]{0,1}[*\-=]){2,}'
+    r'[\n\r]{1}[ ]{0,1}[*\-=]([ ]{0,1}[*\-=]){2,}'
     return t
 
 def t_LISTNUMBER(t):
-    r'[\n\r]{1}[ ]*[0-9]+[.]{1}[ ]{1}'
+    r'[\n\r]{1}[ \t]*[0-9]+[.]{1}[ ]{1}'
     t.value = (t.value)[1:-2]
     return t
 
 def t_LISTSINGLE(t):
-    r'[\n\r]{1}[ ]*[\*\-\+]{1}[ ]{1}'
+    r'[\n\r]{1}[ \t]*[\*\-\+]{1}[ ]{1}'
     t.value = (t.value)[1:-1]
     return t
 
 def t_LISTDOUBLE(t):
-    r'[\n\r]{1}[ ]*[\*\-\+]{2}[ ]{1}'
+    r'[\n\r]{1}[ \t]*[\*\-\+]{2}[ ]{1}'
     t.value = (t.value)[1:-2]
-    return t
-
-def t_NEWLINE(t):
-    r'[\r\n]'
-    t.value = len(t.value)
     return t
 
 def t_TAB(t):
@@ -65,8 +62,21 @@ def t_TAB(t):
     return t
 
 def t_POUNDSIGN(t):
-    r'[#]{1,6}'
+    r'[ ]{0,1}[#]{1,6}'
     t.value = str(len(t.value))
+    return t
+
+def t_EXCLAMATION(t):
+    r'[ ]{0,1}[!]{1}'
+    return t
+
+def t_CODEFIELD(t):
+    '[\n\r]{1}[ ]{0,1}[`]{3}'
+    return t
+
+def t_NEWLINE(t):
+    r'[\r\n]'
+    t.value = len(t.value)
     return t
 
 def t_CODE(t):
@@ -106,7 +116,7 @@ def t_RPAREN(t):
     return t
 
 def t_CONTENTS(t):
-    r'([0-9a-zA-Z]|[., :\/\'\?!])+'
+    r'([0-9a-zA-Z]|[., :;\/\'\’\?\{\}\"])+'
     return t
 
 ## Ignored only \n not \n\n
@@ -131,18 +141,33 @@ def t_error(t):
 lexer = lex.lex()
 
 
-# Test lex
-file_object = open('./data.md')
-try:
-    data = file_object.read()
-finally:
-    file_object.close()
-# Give the lexer some input
-lexer.input(data)
+## Test lex
+#file_object = open('./test03.md')
+#try:
+#    data = file_object.read()
+#finally:
+#    file_object.close()
 
+## Insert a space at the first of each paragraph
+#condition = 0
+#i = 0
+#length = len(data)
+#newdata = ""
+#while i<length:
+#    char = data[i:i+1]
+#    i += 1
+#    if char == "\n" or char == "\r":newdata += char; condition = 0
+#    elif condition == 0 and char in "*_": newdata += r" " + char; condition = 1
+#    else: newdata += char
+#
+#print newdata
 
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok: break      # No more input
-    print tok
+## Give the lexer some input
+#lexer.input(data)
+#
+#
+## Tokenize
+#while True:
+#    tok = lexer.token()
+#    if not tok: break      # No more input
+#    print tok

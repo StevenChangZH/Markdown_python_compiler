@@ -2,7 +2,7 @@
 # plyYacc.py
 #
 # Semantic analyzer for Markdown elements
-# version 3.0 for test-1
+# version 5.0 for test-1
 # ------------------------------------------------------------
 import ply.yacc as yacc
 #from plyExport import html_head
@@ -17,7 +17,8 @@ def getListLevel(string):
     index=0
     for char in string:
         if char==" ":listlevel += 1
-        else:return listlevel/4
+        elif char=="\t":listlevel +=4
+        else:return (listlevel)/4
 
 def getFormerListEnd(string, listlevel):
     str = string[::-1]
@@ -49,6 +50,19 @@ def p_all_empty(p):
 def p_all_title(p):
     'all : all title'
     p[0] = p[1] + p[2] + "\n"
+
+def p_all_image(p):
+    'all : all image'
+    p[0] = p[1] + p[2] + "\n"
+
+def p_all_quote(p):
+    'all : all quote'
+    if (p[1])[-18:]=="</p></blockquote>\n":p[0] = (p[1])[:-18] + p[2] + (p[1])[-18:]
+    else: p[0] = p[1] + "<blockquote><p>" + p[2] + "\n"
+
+def p_all_codefield(p):
+    'all : all codefield newline CODEFIELD %prec PRIORITY0'
+    p[0] = p[1] + p[2] + "\n</code></pre>"
 
 def p_all_separator(p):
     'all : all separator'
@@ -101,10 +115,43 @@ def p_all_listdouble(p):
 
 
 
+# code field
+def p_codefield0_create(p):
+    'codefield0 : newline CODEFIELD'
+    p[0] = "<pre><code>"
+
+def p_codefield0_newline(p):
+    'codefield : codefield0 newline newline'
+    p[0] = p[1]
+
+def p_codefield0_paragraph(p):
+    'codefield0 : codefield0 paragraph'
+    p[0] = p[1] + p[2] + "\n"
+
+def p_codefield_paragraph(p):
+    'codefield0 : codefield paragraph'
+    p[0] = p[1] + p[2] + "\n"
+    
+def p_codefield_newline(p):
+    'codefield : codefield newline newline'
+    p[0] = p[1] + "\n"
+
+
+
+
+
 def p_title_poundsign(p):
     'title : POUNDSIGN CONTENTS'
     p[0] = "<div id=\"" + p[2] + "\" class=\"section level" + p[1] +"\">\n"
     p[0] = p[0] + "<h"+ p[1] + ">" + p[2] + "</h" + p[1] + ">\n</div>"
+
+def p_image_exclamation(p):
+    'image : newline EXCLAMATION LBRACKET CONTENTS RBRACKET LPAREN CONTENTS RPAREN %prec PRIORITY2'
+    p[0] = "<img src=\"" + p[7] + "\" alt=\"" + p[4] + "\" />"
+
+def p_quote_rangle(p):
+    'quote : newline RANGLE paragraph %prec PRIORITY2'
+    p[0] = p[3] + "</p></blockquote>"
 
 def p_separator_separator(p):
     'separator : SEPARATOR'
@@ -121,13 +168,10 @@ def p_tab_tab(p):
 
 
 
+
 def p_paragraph_empty(p):
     'paragraph : sentences'
     p[0] = p[1]
-
-def p_sentences_code(p):
-    'paragraph : paragraph CODE sentences CODE %prec PRIORITY2'
-    p[0] = p[1] + "<code>" + p[3] + "</code>"
 
 def p_paragraph_sentences(p):
     'paragraph : paragraph sentences %prec PRIORITY1'
@@ -136,6 +180,10 @@ def p_paragraph_sentences(p):
 def p_sentences_url_redirect(p):
     'paragraph : paragraph LBRACKET sentences RBRACKET LPAREN sentences RPAREN %prec PRIORITY2'
     p[0] = p[1] + "<a href=\"" + p[6] + "\">" + p[3] + "</a>"
+
+def p_sentences_code(p):
+    'paragraph : paragraph CODE sentences CODE %prec PRIORITY2'
+    p[0] = p[1] + "<code>" + p[3] + "</code>"
 
 def p_sentences_latics(p):
     'paragraph : paragraph LATICS sentences LATICS %prec PRIORITY2'
@@ -149,8 +197,13 @@ def p_sentences_url(p):
     'paragraph : LANGLE sentences RANGLE %prec PRIORITY2'
     p[0] = "<a href=\"" + p[2] + "\">" + p[2] + "</a>"
 
+def p_paragraph_add_exclamation(p):
+    'paragraph : paragraph EXCLAMATION newline %prec PRIORITY1'
+    p[0] = p[1] + p[2]
+
 def p_paragraph_add_notation(p):
-    '''paragraph : paragraph LBRACKET sentences %prec PRIORITY1
+    '''paragraph : paragraph EXCLAMATION sentences %prec PRIORITY1
+                | paragraph LBRACKET sentences %prec PRIORITY1
                 | paragraph RBRACKET sentences %prec PRIORITY1
                 | paragraph LPAREN sentences %prec PRIORITY1
                 | paragraph RPAREN sentences %prec PRIORITY1
@@ -172,6 +225,8 @@ def p_empty(p):
 
 # Error rule for syntax errors
 def p_error(p):
+    print "Syntax error in input!"
+    print p
     print "Syntax error in input!"
 
 # Build the parser

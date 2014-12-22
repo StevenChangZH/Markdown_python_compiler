@@ -2,7 +2,7 @@
 # plyRun.py
 #
 # Main
-# version 3.0 for Markdown_python_compiler
+# version 5.0 for Markdown_python_compiler
 # ------------------------------------------------------------
 import plyYacc
 import sys
@@ -33,13 +33,25 @@ try:
     data = markdown_input.read()
 finally:
     markdown_input.close()
+# Insert a space at the first of each paragraph
+condition = 0
+i = 0
+length = len(data)
+newdata = ""
+while i<length:
+    char = data[i:i+1]
+    i += 1
+    if char == "\n" or char == "\r":newdata += char; condition = 0
+    elif condition == 0 and char in "*_`": newdata += r" " + char; condition = 1
+    else: newdata += char
+
+print newdata
 # Parse
-parsing_result = plyYacc.yaccparse(data)
+parsing_result = plyYacc.yaccparse(newdata)
 print "Parsing success"
 # Add html heads and tails from plyExport.py
 html_result = html_head + parsing_result +html_tails;
 
-# Write to a html file
 html_output = open('./'+HTML_filename, 'w')
 try:
     html_output.write(html_result)
