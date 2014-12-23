@@ -20,6 +20,7 @@ Supported Markdown grammars:
 + Using `![img](url)` to show image
 + Using `> contents` to support quote.
 + Using ``` to support code fields.
+  (please notice this is only supported by GitHub.)
 
 
 
