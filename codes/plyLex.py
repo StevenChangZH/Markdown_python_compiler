@@ -116,7 +116,7 @@ def t_RPAREN(t):
     return t
 
 def t_CONTENTS(t):
-    r'([0-9a-zA-Z]|[., :;\/\'\’\?\{\}\"])+'
+    r'([0-9a-zA-Z]|[., :;/\'’?{}"\+^|=])+'
     return t
 
 ## Ignored only \n not \n\n
@@ -142,26 +142,13 @@ lexer = lex.lex()
 
 
 ## Test lex
-#file_object = open('./test03.md')
+#file_object = open('./data.md')
 #try:
 #    data = file_object.read()
 #finally:
 #    file_object.close()
-
-## Insert a space at the first of each paragraph
-#condition = 0
-#i = 0
-#length = len(data)
-#newdata = ""
-#while i<length:
-#    char = data[i:i+1]
-#    i += 1
-#    if char == "\n" or char == "\r":newdata += char; condition = 0
-#    elif condition == 0 and char in "*_": newdata += r" " + char; condition = 1
-#    else: newdata += char
 #
-#print newdata
-
+#
 ## Give the lexer some input
 #lexer.input(data)
 #

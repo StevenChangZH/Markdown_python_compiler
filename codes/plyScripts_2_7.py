@@ -2,9 +2,10 @@
 # plyScripts_2_7.py
 #
 # Some scripts to provide better codes integration
-# version 5.1 for Markdown_python_compiler
+# version 6.0 for Markdown_python_compiler
 # NOTICE: this script only used for python version under 3.3
 # ------------------------------------------------------------
+#-*-coding:utf-8-*- 
 import re
 import base64
 import urllib2
@@ -18,7 +19,14 @@ def getImageType(path):
 def getUrlImageData(url):
     imagetype = getImageType(url)
     if imagetype==None:return url
+    if imagetype=="jpg":return url
     rawdata = urllib2.urlopen(url).read()
+    out=open("/users/steven/desktop/t."+imagetype,'w')
+    try: out.write(rawdata)
+    finally: out.close()
+    input=open("/users/steven/desktop/t."+imagetype,"rb")
+    try: rawdata = input.read()
+    finally: input.close()
     if rawdata==None: return url
     data = base64.encodestring(rawdata)
     resultdata = ""
@@ -33,8 +41,7 @@ def getLocalImage(path):
     fin = open(path, "rb")
     try: rawdata = fin.read()
     finally: fin.close()
-    data = base64.encodestring(rawdata)
-    print rawdata
+    data = rawdata.encode('base64')
     resultdata = ""
     for char in data:
         if char!="\n" and char!="\r": resultdata+=char
@@ -48,6 +55,17 @@ def getImageContents(path):
     else:contents = getLocalImage(path)
     return contents
 
+
+# Parse youtube url and construct iframe for youtube
+# format:https://www.youtube.com/watch?v=XXXXXXXXX...
+# or http://youtu.be/XXXXXXXXX
+# XXXXXXXXX should be videoid
+def getYoutubeVideoContents(url):
+    prefix = "http://www.youtube.com/embed/"
+    suffix = "?enablejsapi=1&origin=http://www.youtube.com"
+    if url[:32]=="https://www.youtube.com/watch?v=":return prefix+url[32:43]+suffix
+    elif url[:16]=="http://youtu.be/":return prefix+url[16:27]+suffix
+    else: return url
 
 
 

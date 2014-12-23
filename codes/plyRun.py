@@ -2,7 +2,7 @@
 # plyRun.py
 #
 # Main script and user interface
-# version 5.1 for Markdown_python_compiler
+# version 6.0 for Markdown_python_compiler
 # ------------------------------------------------------------
 import plyYacc
 import sys

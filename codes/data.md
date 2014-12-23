@@ -2,6 +2,8 @@
 
 ![gump](http://a1.att.hudong.com/24/64/01300001178110130097643491565.jpg)
 
+!![gump](https://www.youtube.com/watch?v=uPIEn0M8su0)
+
 
 ## OPENING
 
@@ -10,7 +12,7 @@
 my mama always **said:** 
 
 > life was like a box of chocolates. 
-> you never know what you are going to get.
+> you never know what you1^frap{} are going to get.
 
 ## SHOES
 

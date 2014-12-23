@@ -2,7 +2,7 @@
 # plyYacc.py
 #
 # Semantic analyzer for Markdown elements
-# version 5.1 for test-1
+# version 6.0 for test-1
 # ------------------------------------------------------------
 import ply.yacc as yacc
 import sys
@@ -14,7 +14,7 @@ else: import plyScripts_3_3 as plyScripts
 # Get the token map from the lexer.  This is required.
 from plyLex import tokens
 
-# Methods to operate strings
+# Methods to operate list strings
 def getListLevel(string):
     listlevel = 0
     index=0
@@ -56,6 +56,10 @@ def p_all_title(p):
 
 def p_all_image(p):
     'all : all image'
+    p[0] = p[1] + p[2] + "\n"
+
+def p_all_video(p):
+    'all : all video'
     p[0] = p[1] + p[2] + "\n"
 
 def p_all_quote(p):
@@ -152,6 +156,11 @@ def p_image_exclamation(p):
     'image : newline EXCLAMATION LBRACKET CONTENTS RBRACKET LPAREN CONTENTS RPAREN %prec PRIORITY2'
     imagedata = plyScripts.getImageContents(p[7])
     p[0] = "<img src=\"" + imagedata + "\" alt=\"" + p[4] + "\" />"
+
+def p_video_exclamation(p):
+    'video : newline EXCLAMATION EXCLAMATION LBRACKET CONTENTS RBRACKET LPAREN CONTENTS RPAREN %prec PRIORITY2'
+    videourl = plyScripts.getYoutubeVideoContents(p[8])
+    p[0] = "<br/>\n<iframe id=\"player\" type=\"text/html\" width=\"640\" height=\"390\" src=\"" + videourl + "\" alt=\"" + p[5] + "\" frameborder=\"0\"></iframe>\n<br/>"
 
 def p_quote_rangle(p):
     'quote : newline RANGLE paragraph %prec PRIORITY2'
