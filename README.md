@@ -5,7 +5,9 @@ This is a Markdown compiler, converting Markdown to HTML with python. We've used
 
 Some .js scripts used from Markdown interpreter of R studio.
 
-Current version is 5.0
+My development environment is Mac OS 10.10.1, python version 2.7
+
+Current version is 5.1
 
 Now I have realized some functions, check it below.
 
@@ -22,6 +24,7 @@ Supported Markdown grammars:
 + Using ``` to support code fields.
   (please notice this is only supported by GitHub.)
 
++ Image embedded into html automatically( image url need internet access. If cannot, it will output url directly.)
 
 
 ##Environment
@@ -40,6 +43,9 @@ then you can test it.
 + `plyYacc.py`semantic analyzer
 + `plyRun.py` script interface
 
++ `plyScripts_2_7.py` some methods for htmlouput, only applied for python version under 3.3
++ `plyScripts_3_3.py` some methods for htmlouput, only applied for python version above 3.3
+
 To run this analyzer, You have three optional commands:
 ```
 + python plyRun.py
@@ -48,3 +54,4 @@ To run this analyzer, You have three optional commands:
 ```
 
 You can use `data.md` as a test.
+
