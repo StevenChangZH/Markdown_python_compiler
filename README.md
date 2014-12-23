@@ -9,8 +9,6 @@ My development environment is Mac OS 10.10.1, python version 2.7
 
 Current version is 5.1
 
-Now I have realized some functions, check it below.
-
 ##Functions
 Supported Markdown grammars:
 + Using `#` to create title and subtitles, e.g. `# TITLE` `## SUBTITLE`
@@ -21,8 +19,7 @@ Supported Markdown grammars:
 + Using `1. `, `+ `, `- ` or `* ` for listing.
 + Using `![img](url)` to show image
 + Using `> contents` to support quote.
-+ Using ``` to support code fields.
-  (please notice this is only supported by GitHub.)
++ Using ``` to support code fields.(please notice this is only supported by GitHub.)
 
 + Image embedded into html automatically( image url need internet access. If cannot, it will output url directly.)
 
@@ -41,16 +38,15 @@ then you can test it.
 + `plyLex.py` lexer
 + `plyExport.py` two string for html output
 + `plyYacc.py`semantic analyzer
-+ `plyRun.py` script interface
-
 + `plyScripts_2_7.py` some methods for htmlouput, only applied for python version under 3.3
 + `plyScripts_3_3.py` some methods for htmlouput, only applied for python version above 3.3
++ `plyRun.py` script interface
 
 To run this analyzer, You have three optional commands:
 ```
-+ python plyRun.py
-+ python plyRun.py *imported Markdown filename*
-+ python plyRun.py *imported Markdown filename* *Exported HTML filename*
+python plyRun.py
+python plyRun.py *imported Markdown filename*
+python plyRun.py *imported Markdown filename* *Exported HTML filename*
 ```
 
 You can use `data.md` as a test.
