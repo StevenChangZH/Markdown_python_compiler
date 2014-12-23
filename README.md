@@ -15,13 +15,14 @@ Supported Markdown grammars:
 + Using one `*` or one `_` to set to latics, e.g. `*latics*` `_latics_`
 + Using `**` or `__` to set to bold, e.g.`**bold**` `__bold__`
 + Using more than three `*`, `=` or `-` to add a separation line, e.g.`---` `===` `***`
-  (you can be insert a space, and please notice that `===` is only supported by GitHub.)
+  ( *you can be insert a space, and please notice that `===` is only supported by GitHub.*)
 + Using `1. `, `+ `, `- ` or `* ` for listing.
 + Using `![img](url)` to show image
 + Using `> contents` to support quote.
-+ Using ``` to support code fields.(please notice this is only supported by GitHub.)
++ Using ``` to support code fields.( *please notice this is only supported by GitHub.*)
++ Using `!![video](url)` to show youtube videos ( *Certainly this is a function provided by me, which is not supported by standard Markdown grammar. Also, it will only support url like "https://www.youtube.com/watch?v=XXXXXXXXXXX..." or "http://youtu.be/XXXXXXXXXXX"*)
 
-+ Image embedded into html automatically( image url need internet access. If cannot, it will output url directly.)
++ Image embedded into html automatically( *This is only a test function. Sometimes it will not transform( but no problems). And image url need internet access. If cannot, it will output url directly.*)
 
 
 ##Environment
