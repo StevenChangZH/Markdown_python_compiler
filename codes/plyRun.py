@@ -1,8 +1,8 @@
 # ------------------------------------------------------------
 # plyRun.py
 #
-# Main
-# version 5.0 for Markdown_python_compiler
+# Main script and user interface
+# version 5.1 for Markdown_python_compiler
 # ------------------------------------------------------------
 import plyYacc
 import sys
@@ -45,7 +45,6 @@ while i<length:
     elif condition == 0 and char in "*_`": newdata += r" " + char; condition = 1
     else: newdata += char
 
-print newdata
 # Parse
 parsing_result = plyYacc.yaccparse(newdata)
 print "Parsing success"

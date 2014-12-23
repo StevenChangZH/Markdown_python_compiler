@@ -2,9 +2,12 @@
 # plyYacc.py
 #
 # Semantic analyzer for Markdown elements
-# version 5.0 for test-1
+# version 5.1 for test-1
 # ------------------------------------------------------------
 import ply.yacc as yacc
+import sys
+if sys.version_info<(3,3): import plyScripts_2_7 as plyScripts
+else: import plyScripts_3_3 as plyScripts
 #from plyExport import html_head
 #from plyExport import html_tails
 
@@ -147,7 +150,8 @@ def p_title_poundsign(p):
 
 def p_image_exclamation(p):
     'image : newline EXCLAMATION LBRACKET CONTENTS RBRACKET LPAREN CONTENTS RPAREN %prec PRIORITY2'
-    p[0] = "<img src=\"" + p[7] + "\" alt=\"" + p[4] + "\" />"
+    imagedata = plyScripts.getImageContents(p[7])
+    p[0] = "<img src=\"" + imagedata + "\" alt=\"" + p[4] + "\" />"
 
 def p_quote_rangle(p):
     'quote : newline RANGLE paragraph %prec PRIORITY2'
