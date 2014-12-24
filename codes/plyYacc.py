@@ -254,9 +254,9 @@ def p_empty(p):
 
 # Error rule for syntax errors
 def p_error(p):
-    print "Syntax error in input!"
-    print p
-    print "Syntax error in input!"
+    print ("Syntax error in input!")
+    print (p)
+    print ("Syntax error in input!")
 
 # Build the parser
 parser = yacc.yacc()
@@ -276,7 +276,7 @@ def yaccparse(data):
 #    markdown_input.close()
 ## Parse
 #parsing_result = parser.parse(data)
-#print "Parsing success"
+#print ("Parsing success")
 ## Add html heads and tails from plyExport.py
 #html_result = html_head + parsing_result +html_tails;
 #
@@ -286,5 +286,5 @@ def yaccparse(data):
 #    html_output.write(html_result)
 #finally:
 #    html_output.close
-#    print "Exporting success"
+#    print ("Exporting success")
 

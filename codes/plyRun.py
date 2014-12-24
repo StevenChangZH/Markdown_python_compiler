@@ -47,7 +47,7 @@ while i<length:
 
 # Parse
 parsing_result = plyYacc.yaccparse(newdata)
-print "Parsing success"
+print ("Parsing success")
 # Add html heads and tails from plyExport.py
 html_result = html_head + parsing_result +html_tails;
 
@@ -56,4 +56,4 @@ try:
     html_output.write(html_result)
 finally:
     html_output.close
-    print "Exporting success"
+    print ("Exporting success")
