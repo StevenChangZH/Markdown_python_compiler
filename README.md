@@ -30,23 +30,7 @@ Supported Markdown grammars:
 
 ##Environment
 If you want to test it, first you need to set up python environment (only for windows users) and ply (lexer and yacc for python).
-At the root of this repository exists a file named `ply-3.4.zip`. Unzip it and run this code on your terminal if ply has not been installed in your computer:
-
-```
-python setup.py install
-```
-then you can test it.
-
-##Folder orgnization
-+ `ply` imported code folder
-+ `plyLex.py` lexer
-+ `plyExport.py` two string for html output
-+ `plyYacc.py`semantic analyzer
-+ `plyScripts_2_7.py` some methods for htmlouput, only applied for python version under 3.3
-+ `plyScripts_3_3.py` some methods for htmlouput, only applied for python version above 3.3
-+ `plyRun.py` script interface
-+ `test0x.md` requirements files from course Github website
-+ `data.md` ourselfs' md file for test
+All the source code files are placed in folder `code`. Just simply run the py file for testing.
 
 ##How to use
 
@@ -59,3 +43,13 @@ python plyRun.py [imported Markdown filename] [Exported HTML filename]
 
 Please use `data.md` to test all the grammers supported.
 
+##Folder orgnization
++ `ply` imported code folder
++ `plyLex.py` lexer
++ `plyExport.py` two string for html output
++ `plyYacc.py`semantic analyzer
++ `plyScripts_2_7.py` some methods for htmlouput, only applied for python version under 3.3
++ `plyScripts_3_3.py` some methods for htmlouput, only applied for python version above 3.3
++ `plyRun.py` script interface
++ `test0x.md` requirements files from course Github website
++ `data.md` ourselfs' md file for test
