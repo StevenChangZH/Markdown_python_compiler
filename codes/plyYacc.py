@@ -2,7 +2,7 @@
 # plyYacc.py
 #
 # Semantic analyzer for Markdown elements
-# version 6.0 for test-1
+# version 7.0 for test-1
 # ------------------------------------------------------------
 import ply.yacc as yacc
 import sys
@@ -35,6 +35,17 @@ def getFormerListEnd(string, listlevel):
         elif str[index:index+1]=="\n":index+=1
         elif str[index:index+5]==">il/<":return -index
         else:return 0
+
+def adjustMathFormula(string):
+    str = ""
+    strlen = len(string)
+    index = 0
+    while index<strlen:
+        i=2
+        if string[index:index+5]==" <em>"or string[index:index+5]=="</em>":str+="_";index+=5;
+        else:str+=string[index:index+1];index+=1;
+    return str
+
 
 
 # Priority
@@ -189,6 +200,11 @@ def p_paragraph_empty(p):
 def p_paragraph_sentences(p):
     'paragraph : paragraph sentences %prec PRIORITY1'
     p[0] = p[1] + p[2]
+
+def p_paragraph_mathformula(p):
+    'paragraph : paragraph DOLLAR paragraph DOLLAR'
+    formula = adjustMathFormula(p[3])
+    p[0] = p[1] + "<span class=\"math\">\\(" + formula + "\\)</span>"
 
 def p_sentences_url_redirect(p):
     'paragraph : paragraph LBRACKET sentences RBRACKET LPAREN sentences RPAREN %prec PRIORITY2'

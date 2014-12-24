@@ -12,7 +12,9 @@
 my mama always **said:** 
 
 > life was like a box of chocolates. 
-> you never know what you1^frap{} are going to get.
+> you never know what you1^frap{} are going to get.$1\times2$
+
+She also used a formula to tell me how it works: $\lim_{n \to \infty}\sum_{k=1}^n \frac{1}{k^2}= \frac{\pi^2}{6}$
 
 ## SHOES
 

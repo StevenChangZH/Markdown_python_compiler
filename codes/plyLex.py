@@ -3,7 +3,7 @@
 # plyLex.py
 #
 # tokenizer for Markdown elements
-# version 5.0 for test-1
+# version 7.0 for test-1
 # ------------------------------------------------------------
 import ply.lex as lex
 
@@ -18,6 +18,7 @@ tokens = (
           
     'POUNDSIGN',
     'EXCLAMATION',
+    'DOLLAR',
     'CODEFIELD',
     'NEWLINE',
     'CODE',
@@ -70,6 +71,10 @@ def t_EXCLAMATION(t):
     r'[ ]{0,1}[!]{1}'
     return t
 
+def t_DOLLAR(t):
+    r'[$]{1}'
+    return t
+
 def t_CODEFIELD(t):
     '[\n\r]{1}[ ]{0,1}[`]{3}'
     return t
@@ -116,7 +121,7 @@ def t_RPAREN(t):
     return t
 
 def t_CONTENTS(t):
-    r'([0-9a-zA-Z]|[., :;/\'’?{}"\+^|=])+'
+    r'([0-9a-zA-Z]|[., :;/\'’?{}"\\+^|=%&])+'
     return t
 
 ## Ignored only \n not \n\n
