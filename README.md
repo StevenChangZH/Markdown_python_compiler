@@ -5,7 +5,9 @@ This is a Markdown compiler, converting Markdown to HTML with python. We've used
 
 Some .js scripts used from Markdown interpreter of R studio.
 
-My development environment is Mac OS 10.10.1, python version 2.7, safari 8.0.2
+Our development environment is Mac OS 10.10.1, python version 2.7, safari 8.0.2
+
+This project can be run in Mac OS 10.10.1 and Ubuntu 14.04 LTS
 
 Current version is 7.0
 
@@ -28,7 +30,7 @@ Supported Markdown grammars:
 
 ##Environment
 If you want to test it, first you need to set up python environment (only for windows users) and ply (lexer and yacc for python).
-All the source code files are placed in folder 'code'. Just simply run the  code on your terminal:
+All the source code files are placed in folder `code`. Just simply run the  code on your terminal:
 
 ##Folder orgnization
 + `ply` imported code folder
