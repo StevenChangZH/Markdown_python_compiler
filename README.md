@@ -7,7 +7,7 @@ Some .js scripts used from Markdown interpreter of R studio.
 
 My development environment is Mac OS 10.10.1, python version 2.7, safari 8.0.2
 
-Current version is 5.1
+Current version is 7.0
 
 ##Functions
 Supported Markdown grammars:
