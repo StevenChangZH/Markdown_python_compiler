@@ -5,7 +5,7 @@ This is a Markdown compiler, converting Markdown to HTML with python. We've used
 
 Some .js scripts used from Markdown interpreter of R studio.
 
-My development environment is Mac OS 10.10.1, python version 2.7
+My development environment is Mac OS 10.10.1, python version 2.7, safari 8.0.2
 
 Current version is 5.1
 
@@ -20,6 +20,7 @@ Supported Markdown grammars:
 + Using `![img](url)` to show image
 + Using `> contents` to support quote.
 + Using ``` to support code fields.( *please notice this is only supported by GitHub.*)
++ Using `$ formula $` to support LaTex mathematical formulas. ( *Do not support newline; restrictions of formula types depended by MathJax. Refer http://www.mathjax.org for more information.*)
 + Using `!![video](url)` to show youtube videos ( *Certainly this is a function provided by me, which is not supported by standard Markdown grammar. Also, it will only support url like "https://www.youtube.com/watch?v=XXXXXXXXXXX..." or "http://youtu.be/XXXXXXXXXXX"*)
 
 + Image embedded into html automatically( *This is only a test function. Sometimes it will not transform( but no problems). And image url need internet access. If cannot, it will output url directly.*)
