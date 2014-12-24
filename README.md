@@ -30,7 +30,12 @@ Supported Markdown grammars:
 
 ##Environment
 If you want to test it, first you need to set up python environment (only for windows users) and ply (lexer and yacc for python).
-All the source code files are placed in folder `code`. Just simply run the  code on your terminal:
+At the root of this repository exists a file named `ply-3.4.zip`. Unzip it and run this code on your terminal if ply has not been installed in your computer:
+
+```
+python setup.py install
+```
+then you can test it.
 
 ##Folder orgnization
 + `ply` imported code folder
