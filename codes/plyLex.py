@@ -3,7 +3,7 @@
 # plyLex.py
 #
 # tokenizer for Markdown elements
-# version 7.0 for test-1
+# version 7.0 for Markdown_python_compiler
 # ------------------------------------------------------------
 import ply.lex as lex
 
@@ -40,7 +40,7 @@ tokens = (
 # NOTICE the return values of each token
 # NOTICE the priority of each token
 def t_SEPARATOR(t):
-    r'[\n\r]{1}[ ]{0,1}[*\-=]([ ]{0,1}[*\-=]){2,}'
+    r'[\n\r]{1}[ ]{0,1}[*\-=]([ ]{0,1}[*\-=]){2,}[ ]{0,}'
     return t
 
 def t_LISTNUMBER(t):
@@ -76,7 +76,7 @@ def t_DOLLAR(t):
     return t
 
 def t_CODEFIELD(t):
-    '[\n\r]{1}[ ]{0,1}[`]{3}'
+    '[\n\r]{1}[ ]{0,1}[`]{3}[ ]{0,}'
     return t
 
 def t_NEWLINE(t):
@@ -121,7 +121,7 @@ def t_RPAREN(t):
     return t
 
 def t_CONTENTS(t):
-    r'([0-9a-zA-Z]|[., :;/\'’?{}"\\+^|=%&])+'
+    r'([0-9a-zA-Z]|[., :;/\'’?{}"\\+^#|=%&])+'
     return t
 
 ## Ignored only \n not \n\n
@@ -153,9 +153,22 @@ lexer = lex.lex()
 #finally:
 #    file_object.close()
 #
+#condition = 0
+#i = 0
+#length = len(data)
+#newdata = ""
+#while i<length:
+#    char = data[i:i+1]
+#    i += 1
+#    if (char == "\n" or char == "\r") and condition==1:newdata += " " + char; condition = 0
+#    elif (char == "\n" or char == "\r") and condition==0:newdata += char;
+#    elif char=="$": condition = 1; newdata += "$ e"
+#    elif condition == 0 and char in "*_`": newdata += r" " + char; condition = 1
+#    else: newdata += char
+#
 #
 ## Give the lexer some input
-#lexer.input(data)
+#lexer.input(newdata)
 #
 #
 ## Tokenize

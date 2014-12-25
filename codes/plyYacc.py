@@ -2,7 +2,7 @@
 # plyYacc.py
 #
 # Semantic analyzer for Markdown elements
-# version 7.0 for test-1
+# version 7.0 for Markdown_python_compiler
 # ------------------------------------------------------------
 import ply.yacc as yacc
 import sys
@@ -42,7 +42,8 @@ def adjustMathFormula(string):
     index = 0
     while index<strlen:
         i=2
-        if string[index:index+5]==" <em>"or string[index:index+5]=="</em>":str+="_";index+=5;
+        if string[index:index+4]=="<em>":str+="_";index+=4;
+        elif string[index:index+5]=="</em>":str+="_";index+=5;
         else:str+=string[index:index+1];index+=1;
     return str
 
@@ -202,9 +203,10 @@ def p_paragraph_sentences(p):
     p[0] = p[1] + p[2]
 
 def p_paragraph_mathformula(p):
-    'paragraph : paragraph DOLLAR paragraph DOLLAR'
+    'paragraph : paragraph DOLLAR paragraph DOLLAR sentences'
     formula = adjustMathFormula(p[3])
-    p[0] = p[1] + "<span class=\"math\">\\(" + formula + "\\)</span>"
+    p[0] = p[1] + "<span class=\"math\">\\(" + formula + "\\)</span>" + p[5]
+    print formula
 
 def p_sentences_url_redirect(p):
     'paragraph : paragraph LBRACKET sentences RBRACKET LPAREN sentences RPAREN %prec PRIORITY2'

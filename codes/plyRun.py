@@ -2,7 +2,7 @@
 # plyRun.py
 #
 # Main script and user interface
-# version 6.0 for Markdown_python_compiler
+# version 7.0 for Markdown_python_compiler
 # ------------------------------------------------------------
 import plyYacc
 import sys
@@ -41,9 +41,12 @@ newdata = ""
 while i<length:
     char = data[i:i+1]
     i += 1
-    if char == "\n" or char == "\r":newdata += char; condition = 0
+    if (char == "\n" or char == "\r") and condition==1:newdata += " " + char; condition = 0
+    elif (char == "\n" or char == "\r") and condition==0:newdata += char;
+    elif char=="$": condition = 1; newdata += "$ "
     elif condition == 0 and char in "*_`": newdata += r" " + char; condition = 1
     else: newdata += char
+
 
 # Parse
 parsing_result = plyYacc.yaccparse(newdata)
