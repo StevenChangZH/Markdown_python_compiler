@@ -206,7 +206,6 @@ def p_paragraph_mathformula(p):
     'paragraph : paragraph DOLLAR paragraph DOLLAR sentences'
     formula = adjustMathFormula(p[3])
     p[0] = p[1] + "<span class=\"math\">\\(" + formula + "\\)</span>" + p[5]
-    print formula
 
 def p_sentences_url_redirect(p):
     'paragraph : paragraph LBRACKET sentences RBRACKET LPAREN sentences RPAREN %prec PRIORITY2'

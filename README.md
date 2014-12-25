@@ -7,7 +7,7 @@ Some .js scripts used from Markdown interpreter of R studio.
 
 Our development environment is Mac OS 10.10.1, python version 2.7, safari 8.0.2
 
-This project can be run in Mac OS 10.10.1 and Ubuntu 14.04 LTS
+This project need online service. Please make sure your internet access.
 
 Current version is 7.0
 
@@ -26,6 +26,8 @@ Supported Markdown grammars:
 + Using `!![videolabel](url)` to show Youtube videos ( *Certainly this is a function provided by me, which is not supported by standard Markdown grammar. Also, it will only support url like "https://www.youtube.com/watch?v=XXXXXXXXXXX..." or "http://youtu.be/XXXXXXXXXXX"*)
 
 + Image embedded into html automatically( *This is only a test function. Sometimes it will not transform( but no problems). And image url need internet access. If cannot, it will output url directly.*)
+
++ Notice: Nesting is not SUPPORTED. That means you cannot use grammars like `*_``hello``_*`
 
 
 ##Environment
