@@ -27,7 +27,7 @@ Supported Markdown grammars:
 
 + Image embedded into html automatically( *This is only a test function. Sometimes it will not transform( but no problems). And image url need internet access. If cannot, it will output url directly.*)
 
-NOTICE: Nesting is not **SUPPORTED**. That means you cannot use grammars like `*_``hello``_*`
+**NOTICE**: Nesting is not **SUPPORTED**. That means you cannot use grammars like `*_``hello``_*`
 
 
 ##Environment
@@ -36,7 +36,7 @@ All the source code files are placed in folder `code`. Just simply run the py fi
 
 ##How to use
 
-First in your change your directory to our code/ folder:
+First you change your directory to our code/ folder:
 
 ```
 cd .../codes/
