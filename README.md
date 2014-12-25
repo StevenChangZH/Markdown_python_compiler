@@ -27,7 +27,7 @@ Supported Markdown grammars:
 
 + Image embedded into html automatically( *This is only a test function. Sometimes it will not transform( but no problems). And image url need internet access. If cannot, it will output url directly.*)
 
-+ Notice: Nesting is not SUPPORTED. That means you cannot use grammars like `*_``hello``_*`
+NOTICE: Nesting is not **SUPPORTED**. That means you cannot use grammars like `*_``hello``_*`
 
 
 ##Environment
@@ -35,6 +35,12 @@ If you want to test it, first you need to set up python environment (only for wi
 All the source code files are placed in folder `code`. Just simply run the py file for testing.
 
 ##How to use
+
+First in your change your directory to our code/ folder:
+
+```
+cd .../codes/
+```
 
 To run this analyzer, You have three optional commands:
 ```
