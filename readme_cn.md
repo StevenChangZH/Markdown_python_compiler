@@ -97,7 +97,7 @@ python plyRun.py [imported Markdown filename] [Exported HTML filename]
 
 * 手机：13127736127
 
-* 邮箱：1002945237@qq.com
+* 邮箱：stevenchang12@hotmail.com@
 
 * 分工：插入代码块、数学表达式、视频、图片二进制流嵌入等扩展功能，编写测试文档
 
